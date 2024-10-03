@@ -1,17 +1,18 @@
 on: [push]
 jobs:
   prisma-scan:
-   runs-on: ubuntu-latest
-   steps:
+    runs-on: ubuntu-latest
+    steps:
     - name: Checkout repo
       uses: actions/checkout@v2
-    - name: Run Prisma Cloud 
+    - name: Run Prisma Cloud
       id: prisma-cloud
       uses: bridgecrewio/checkov-action@master
       env:
-         PRISMA_API_URL: https://api.prismacloud.io
+        PRISMA_API_URL: https://api.prismacloud.io
       with:
-        api-key: a6a67b2b-1cdc-40d8-a83b-b1e0f779125c::HPP7yFvBcyhhSP5psnaZqh4d3+U=    
+        api-key: ${{ secrets.BC_API_KEY }}
+  push-web-image:
     needs: prisma-scan
     runs-on: ubuntu-latest
     steps:
