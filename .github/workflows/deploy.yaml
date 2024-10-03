@@ -11,8 +11,7 @@ jobs:
       env:
          PRISMA_API_URL: https://api.prismacloud.io
       with:
-        api-key: PRISMA_ACCESS_KEY::PRISMA_SECRET_KEY
-  push-web-image:
+        api-key: a6a67b2b-1cdc-40d8-a83b-b1e0f779125c::HPP7yFvBcyhhSP5psnaZqh4d3+U=    
     needs: prisma-scan
     runs-on: ubuntu-latest
     steps:
