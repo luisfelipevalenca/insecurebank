@@ -9,10 +9,11 @@ jobs:
       id: prisma-cloud
       uses: bridgecrewio/checkov-action@master
       env:
-         PRISMA_API_URL: https://api.prismacloud.io
+         PRISMA_API_URL: https://api2.prismacloud.io
       with:
         api-key: ${{ secrets.BC_API_KEY }}
   push-web-image:
+    needs: prisma-scan
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
