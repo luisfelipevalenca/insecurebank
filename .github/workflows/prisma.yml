@@ -35,10 +35,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Run Prisma Cloud 
+      # Run Prisma Cloud IaC Scan
+      - name: Run Prisma Cloud IaC Scan
         id: prisma-cloud
-        uses: bridgecrewio/checkov-action@master
-        env:
-          PRISMA_API_URL: https://api.prismacloud.io
+        uses: prisma-cloud-shiftleft/iac-scan-action@<version>  # Replace <version> with the latest version or commit hash
         with:
-          api-key: ${{ secrets.BC_API_KEY }}
+          prisma_api_url: https://api.prismacloud.io  # Ensure the URL is correct for your region
+          access_key: ${{ secrets.PRISMA_ACCESS_KEY }}  # Your Prisma Cloud access key from GitHub Secrets
+          secret_key: ${{ secrets.PRISMA_SECRET_KEY }}  # Your Prisma Cloud secret key from GitHub Secrets
+          asset_name: 'my-asset-name'  # Name of the asset you're scanning
+          template_type: 'CFT'  # Change if scanning Terraform or other IaC types
+          scan_path: ./  # Directory where your IaC files are located
+          result_path: ./prismacloud_iac  # Where to save the scan results
