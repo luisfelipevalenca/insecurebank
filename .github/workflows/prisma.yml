@@ -35,7 +35,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      # Run Bridgecrew Checkov with valid Bridgecrew API Key
+      # Run Bridgecrew Checkov with valid Bridgecrew API Key and repo-id
       - name: Run Bridgecrew Checkov
         id: bridgecrew
         uses: bridgecrewio/checkov-action@master
@@ -43,6 +43,10 @@ jobs:
           BC_API_KEY: ${{ secrets.BC_API_KEY }}  # Correct Bridgecrew API Key
         with:
           directory: .  # Scan the current directory
+          output_format: sarif
+          log_level: WARNING
+          container_user: 0
+          repo_id: 'luisfelipevalenca/insecurebank'  # Replace with your GitHub repo ID
 
       # Run Prisma Cloud IaC Scan
       - name: Run Prisma Cloud IaC Scan
