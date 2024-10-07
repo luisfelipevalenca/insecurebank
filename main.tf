@@ -196,6 +196,7 @@ resource "aws_db_instance" "insecurebank_db" {
   identifier           = "insecurebank-db"
   skip_final_snapshot  = true
   publicly_accessible  = true
+  performance_insights_kms_key_id = "CKV_ANY"
 }
 
 resource "null_resource" "db_setup" {
