@@ -19,7 +19,7 @@ jobs:
     name: Run Prisma Cloud IaC Scan to check
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Run Prisma Cloud with Checkov
         id: prisma-cloud
@@ -27,7 +27,7 @@ jobs:
         env:
           PRISMA_API_URL: https://api.prismacloud.io
         with:
-          api-key: ${{ secrets.BC_API_KEY }}
+          api-key: <BC_API_KEY>
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,8 +37,8 @@ jobs:
         uses: prisma-cloud-shiftleft/iac-scan-action@53278c231c438216d99b463308a3cbed351ba0c3
         with:
           prisma_api_url: https://api.prismacloud.io
-          access_key: ${{ secrets.PRISMA_ACCESS_KEY }}
-          secret_key: ${{ secrets.PRISMA_SECRET_KEY }}
+          access_key: a6a67b2b-1cdc-40d8-a83b-b1e0f779125c
+          secret_key: HPP7yFvBcyhhSP5psnaZqh4d3+U=
           asset_name: 'my-asset-name'
           template_type: 'CFT'
 
